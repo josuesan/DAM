@@ -27,7 +27,7 @@ export class FilmsPage {
   }
   async getFilm(title){
     
-    let result = await this.films.getFilm(title)
-    console.log( result  );
+    let result = await this.films.getFilm(title);
+    console.log( result );
   }
 }

@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { AngularFireDatabase } from 'angularfire2/database';
 import { HttpClient } from '@angular/common/http';
+import { Film } from '../../interfaces/film.services';
 @Injectable()
 export class FilmServices  {
 	url = "http://www.omdbapi.com/?apikey=5753a622&";
@@ -9,14 +10,14 @@ export class FilmServices  {
 	public getFilms () {
 		return 
 	}
-	public getFilm(title){
+	public async getFilm(title):Promise<Film | Film[]>{
 		let request = this.url +`&s=${title}`;
 		console.log(request);
-		this.http.get(request).subscribe(data => {
-	      // Read the result field from the JSON response.
-	      console.log(data);
-	      return  data;
-	    });
-		
+		try{
+			let data = await this.http.get(request).toPromise();
+			return data;
+		}catch(error){
+			console.log("An error ocurred: ", error);
+		}
 	}
 }
