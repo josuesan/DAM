@@ -1,39 +1,54 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
-import { Camera, CameraOptions } from '@ionic-native/camera';
+import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireDatabase , AngularFireObject } from 'angularfire2/database';
+import { Profile } from '../../interfaces/profile';
+import { Observable } from 'rxjs/Observable';
+
+/**
+ * Generated class for the HomePage page
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+
+@IonicPage()
 @Component({
   selector: 'page-home',
-  templateUrl: 'home.html'
+  templateUrl: 'home.html',
 })
 export class HomePage {
-	  options: CameraOptions = {
-	  quality: 100,
-	  destinationType: this.camera.DestinationType.DATA_URL,
-	  encodingType: this.camera.EncodingType.JPEG,
-	  mediaType: this.camera.MediaType.PICTURE
-	}
-	x = 1;
-  constructor(public navCtrl: NavController , public camera: Camera) {
+	profile :Observable<AngularFireObject<Profile>>;
+  profileDATA:Profile;
+  
+
+  constructor( private afDB:AngularFireDatabase, private tosty:ToastController, private afAuth:AngularFireAuth, public navCtrl: NavController, public navParams: NavParams) {
 
   }
-	
-  init(){
-  	this.camera.getPicture(this.options).then((imageData) => {
-		 // imageData is either a base64 encoded string or a file URI
-		 // If it's base64:
-		 let base64Image = 'data:image/jpeg;base64,' + imageData;
-		}, (err) => {
-		 // Handle error
-		});
-  	if(this.x==1){
-  		document.getElementById("divo").style.display = 'none';
-  		this.x--;
-  	}
-  	else{
-  		document.getElementById("divo").style.display = 'block';
-  		this.x++;
-  	}
-  	
+
+  ionViewDidLoad() {
+
+    this.afAuth.authState.subscribe(data => {
+    	 
+    	if(data && data.email){	
+        this.afDB.object(`profile/${data.uid}`).snapshotChanges().subscribe( profileDATA => {
+           this.profileDATA = profileDATA.payload.val();
+           this.tosty.create({
+              message: `Bienvenido ${this.profileDATA.name }`,
+              duration: 4000
+            }).present();
+        })	
+    		
+    	}
+    	else{
+    		this.tosty.create({
+	    		message: `No se encontraron los datos de autenticacion`,
+	    		duration: 4000
+	    	}).present();
+	    	this.navCtrl.setRoot("LoginPage");
+    	}
+    	
+    });
   }
-	
+
 }
