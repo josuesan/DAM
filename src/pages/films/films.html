@@ -15,14 +15,13 @@
 
 <ion-content padding>
 	<ion-list>
-	  <ion-item >
-	   <!-- <ion-thumbnail item-start>
-	      <img src="img/thumbnail-totoro.png">
+	  <ion-item *ngFor="let pelicula of peliculas" (click)="goToDetail(pelicula.imdbID)">
+	   <ion-thumbnail item-start>
+	      <img src="{{pelicula.Poster}}">
 	    </ion-thumbnail>
-	    <h2>My Neighbor Totoro</h2>
-	    <p>Hayao Miyazaki • 1988</p>
-	    <button ion-button clear item-end>View</button>-->
-	    <p>FILM 1</p>
+	    <h2 >{{pelicula.Title }}</h2>
+	    <p> Año de salida: {{pelicula.Year}}</p>
+			<!--<(click)="goToDetail(pelicula.imdbID)"-->				
 	  </ion-item>
 
 	</ion-list>

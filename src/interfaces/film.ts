@@ -7,4 +7,5 @@ export interface Film{
 	Plot:string,
 	Poster:string,
 	ImdbRating:string,
+	ImdbID:string
 }
