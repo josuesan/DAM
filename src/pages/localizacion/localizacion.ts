@@ -10,6 +10,7 @@ import {
   Marker
 } from '@ionic-native/google-maps';
 import { Geolocation } from '@ionic-native/geolocation';
+import { AgmCoreModule } from '@agm/core';
 
 /**
  * Generated class for the LocalizacionPage page.
@@ -42,11 +43,11 @@ export class LocalizacionPage {
   ngAfterViewInit(){
   	
   	this.platform.ready().then(() => {
-  		console.log("llamando");
-	  this.loadMap();
+  		//console.log("llamando");
+	 //this.loadMap();
 	  this.getPositionNative();
 	  /*Sanity check*/
-	  this.initMap();
+	  /*this.initMap();*/
        
     
     

@@ -14,13 +14,9 @@
 
 
 <ion-content padding>
-	<div class="trans">
-		<div id="map_canvas"></div>
-	<p>HOLA </p>
-	<p *ngIf="flag==true">{{lat}}</p>
-	<p *ngIf="flag==true"> {{lon}}</p>
-	<!--<p>{{test.lat}}</p>
-	<p{{>test.lon}}</p>-->
-	</div>
-	
+	<!--<div class="trans">
+		<div id="map_canvas"></div>-->
+	<agm-map [latitude]="lat" [longitude]="lon">
+  		<agm-marker [latitude]="lat" [longitude]="lon"></agm-marker>
+	</agm-map>
 </ion-content>

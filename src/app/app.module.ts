@@ -1,4 +1,4 @@
-import { NgModule, ErrorHandler } from '@angular/core';
+import { NgModule, ErrorHandler  } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
@@ -22,6 +22,8 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { ShoppingListServices } from '../services/shopping-list.services';
 import { HttpClientModule } from '@angular/common/http';
 import { FilmServices } from '../services/film.services';
+import { AgmCoreModule } from '@agm/core';
+
 
 @NgModule({
   declarations: [
@@ -36,6 +38,9 @@ import { FilmServices } from '../services/film.services';
     AngularFireDatabaseModule, // imports firebase/database, only needed for database features
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features
     HttpClientModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyD72g6xj5LqEnujNnCxm8LKNzaez75x9-A'
+    }),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
