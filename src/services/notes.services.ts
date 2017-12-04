@@ -24,7 +24,8 @@ export class NotesServices  {
 		this.db.database.ref('notas/'+ note.id).set(note);
 
 	}
-	public deleteNote(note){
-		this.db.database.ref('notas/'+ note.id).remove(note);
+	public deleteNote(ide){
+		let id:string = ide+"";
+		this.db.list("notas/").remove(id);
 	}
 }

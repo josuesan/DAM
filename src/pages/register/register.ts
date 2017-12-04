@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController  } from 'ionic-angular';
 import { User } from '../../interfaces/user';
 import { AngularFireAuth } from 'angularfire2/auth';
 /**
@@ -19,12 +19,21 @@ export class RegisterPage {
 		email: "",
 		password: ""
 	};
-  constructor(public afAuth: AngularFireAuth ,public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public afAuth: AngularFireAuth ,public navCtrl: NavController, public navParams: NavParams,private alertCtrl: AlertController) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad RegisterPage');
   }
+  presentAlert() {
+    let alert = this.alertCtrl.create({
+      title: 'Error al resgitrarse',
+      subTitle: 'Por favor intentelo de nuevo.',
+      buttons: ['OK']
+    });
+    alert.present();
+  }
+
   async register(user:User){
   	try {
    		const result = await this.afAuth.auth.createUserWithEmailAndPassword(user.email, user.password);
@@ -32,7 +41,13 @@ export class RegisterPage {
    		this.navCtrl.pop();
   	}
   	catch(e){
+      this.presentAlert();
   		console.log(e);
+
+
   	}
    }
+  
+
+
 }

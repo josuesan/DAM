@@ -15,7 +15,7 @@ import { Note } from '../../interfaces/note';
   templateUrl: 'detail-note.html',
 })
 export class DetailNotePage {
-  note:Note = {id: null , title: null, description: null};
+  note:Note = {id: "" , title: "", description: ""};
   id = null;
   constructor(public navCtrl: NavController, public navParams: NavParams , public notesServices: NotesServices) {
     this.id = navParams.get('id');
@@ -30,10 +30,29 @@ export class DetailNotePage {
       	}
       )
     }
+    /*else{
+      let views = this.navCtrl.length();
+      if ( views > 0){
+        this.navCtrl.pop();
+      } 
+      else{
+         this.navCtrl.setRoot("TabsPage");
+      }
+    }*/
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DetailPage');
+  }
+  
+  ionViewCanEnter(): boolean{
+   // here we can either return true or false
+   // depending on if we want to leave this view
+   if(this.navParams.get("id") != null || this.navParams.get("id") != undefined){
+      return true;
+    } else {
+      return false;
+    }
   }
   public addNote(){
     if(this.id != 0){
@@ -46,8 +65,14 @@ export class DetailNotePage {
     this.navCtrl.pop();
   }
   public deleteNote(){
-    this.notesServices.deleteNote(this.note);
-    this.navCtrl.pop();
+    let ide= this.note.id;
+    this.notesServices.deleteNote(ide);
+    if(this.navCtrl.canGoBack()){
+      this.navCtrl.pop();
+      console.log("popsiado");
+      console.log(this.note);
+    }
+
   }
 
 }

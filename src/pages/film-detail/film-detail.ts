@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Film } from '../../interfaces/film';
+import { FilmServices } from  '../../services/film.services';
 
 /**
  * Generated class for the FilmDetailPage page.
@@ -14,8 +16,25 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'film-detail.html',
 })
 export class FilmDetailPage {
+	filmID:string;
+	film = {} as Film;
+  constructor(private filmServices:FilmServices,public navCtrl: NavController, public navParams: NavParams) {
+  	this.filmID= this.navParams.get("id");
+  	if(this.filmID){
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+      let result = filmServices.getFilm(this.filmID);
+      result.then(data =>{
+        console.log(data);
+        this.film.Actors = data["Actors"];
+        this.film.Director = data["Director"];
+        this.film.ImdbRating = data["imdbRating"];
+        this.film.Plot = data["Plot"];
+        this.film.Poster = data["Poster"];
+        this.film.Runtime = data["Runtime"];
+        this.film.Title = data["Title"];
+        this.film.Year = data["Year"];
+      })
+    }
   }
 
   ionViewDidLoad() {

@@ -14,5 +14,42 @@
 
 
 <ion-content padding>
-	<p>Details film</p>
+	<ion-card>
+	  <ion-item>
+	    <h2>{{film.Title}}</h2>
+	  </ion-item>
+
+	  <img src="{{film.Poster}}">
+
+	  <ion-card-content>
+	    <p>Director: <span>{{film.Director}}</span> </p> 
+	    <p>Reparto principal: <span>{{film.Actors}}</span></p> 
+	    <h4>Sipnosis</h4>
+	    <p>{{film.Plot}}</p>
+	  </ion-card-content>
+
+	  <ion-row>
+	    <ion-col>
+	      <button ion-button icon-left clear small>
+	        <ion-icon name="star"></ion-icon>
+	        <ion-note>{{film.ImdbRating}}</ion-note>
+	      </button>
+	    </ion-col>
+	    <ion-col>
+	      <button ion-button icon-left clear small>
+	        <ion-icon name="calendar"></ion-icon>
+	        <ion-note>{{film.Year}}</ion-note>
+	      </button>
+	    </ion-col>
+	    <ion-col>
+	    	<button ion-button icon-left clear small>
+		        <ion-icon name="time"></ion-icon>
+			    <ion-note>
+			       {{film.Runtime}}
+			    </ion-note>
+			</button>
+	    </ion-col>
+	  </ion-row>
+
+	</ion-card>
 </ion-content>

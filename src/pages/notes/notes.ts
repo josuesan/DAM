@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { NotesServices } from '../../services/notes.services';
 import { Note } from '../../interfaces/note';
+import { Observable } from 'rxjs/Observable';
 /**
  * Generated class for the NotesPage page.
  *
@@ -15,26 +16,45 @@ import { Note } from '../../interfaces/note';
   templateUrl: 'notes.html',
 })
 export class NotesPage {
-	//notes= [];
+  /*result:Observable<any[]> = [];*/
+  result = {} as Observable<any[]>;
+  flag = false;
+  note:Note;
   notes:Array<Note>;
 	@ViewChild("myNav") nav:NavController;
 
-  constructor(public navCtrl: NavController, public notesServices: NotesServices) {
-    notesServices.getNotes().snapshotChanges().subscribe(
+  constructor(public navCtrl: NavController, public notesServices: NotesServices, private navParams: NavParams) {
+   /* let result = await notesServices.getNotes().snapshotChanges().subscribe(
     	notas => {
-        notas.forEach(note=> {
-          this.notes.push(note.payload.val())
-        })
-      
-    })
+        console.log(notas);
+        for (var i in notas) {
+          console.log(notas[i].payload.val());
+          this.note = notas[i].payload.val();
+          this.notes.push(this.note);
+        } 
+    });
+    console.log(this.notes);*/
+   // this.getNotes();
+    
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad NotesPage');
+    let result = this.notesServices.getNotes().valueChanges();
+    if(result){
+      this.flag = true;
+      this.result = this.notesServices.getNotes().valueChanges();
+    }
+  }
+  ionViewDidEnter(){
+    if(this.navParams.get("id") ){
+      console.log('devolviendome NotesPage');
+    }
+    
   }
 
 	
-  
+ 
   public goToDetail(id){
   	this.navCtrl.push("DetailNotePage", {id:id});
   }

@@ -14,9 +14,17 @@
 
 
 <ion-content padding>
-	<ion-list>
-	  <button ion-item *ngFor="let note of notes" (click)="goToDetail(note.id)">
-	    {{ note.title }}
+	<ion-list *ngIf="flag==true">
+	  <button ion-item  *ngFor="let note of result | async"  (click)="goToDetail(note.id )">
+  	  <ion-card>
+        <ion-card-header>
+          {{ note.title }}
+        </ion-card-header>
+        <ion-card-content>
+          {{ note.description }}
+        </ion-card-content>
+      </ion-card>
+      <!--{{ note.payload.val().title}}-->
 	  </button>  
   </ion-list>
   <button ion-button block outline (click)="createNote()">Crear Nota</button>

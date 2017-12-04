@@ -32,8 +32,8 @@ export class FilmServices  {
 		
 	}
 
-	public async getFilm(title){
-		let request = this.url +`&s=${title}`;
+	public async getFilm(id){
+		let request = this.url +`&i=${id}`;
 		console.log(request);
 		try{
 			let data = await this.http.get(request).toPromise();

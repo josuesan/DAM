@@ -5,4 +5,8 @@ page-films {
         object-fit: cover;
         object-position: center;
     }
+    .item-md h2{
+    	text-overflow: initial !important;
+    	white-space: initial;
+    }
 }
