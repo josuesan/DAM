@@ -4,6 +4,7 @@ import { User } from '../../interfaces/user';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Profile } from '../../interfaces/profile';
+import { GoogleAnalytics } from '@ionic-native/google-analytics';
 
 /**
  * Generated class for the LoginPage page.
@@ -24,11 +25,19 @@ export class LoginPage {
 		email: "",
 		password: ""
 	};
-  constructor(private tosty:ToastController,private afDB:AngularFireDatabase, private afAuth:AngularFireAuth, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private ga: GoogleAnalytics,private tosty:ToastController,private afDB:AngularFireDatabase, private afAuth:AngularFireAuth, public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
+    this.ga.startTrackerWithId('UA-114284393-1')
+    .then(() => {
+      console.log('Google analytics is ready now');
+          this.ga.trackView('test');
+      // Tracker is ready
+      // You can now track pages or set additional information such as AppVersion or UserId
+    })
+    .catch(e => console.log('Error starting GoogleAnalytics', e));
   }
 
   register(){
@@ -62,4 +71,5 @@ export class LoginPage {
   	
 
   }
+  
 }

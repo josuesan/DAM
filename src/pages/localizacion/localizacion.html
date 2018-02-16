@@ -6,16 +6,19 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>localizacion</ion-title>
-  </ion-navbar>
+  <ion-toolbar color="primary">
+		<ion-title>Geolocalizacion</ion-title>
+		<ion-buttons end>
+			<button ion-button icon-only (click)="logout()"> 
+				<ion-icon name="log-out"></ion-icon>
+			</button>
+		</ion-buttons>	
+	</ion-toolbar>
 
 </ion-header>
 
 
 <ion-content padding>
-	<!--<div class="trans">
-		<div id="map_canvas"></div>-->
 	<agm-map [latitude]="lat" [longitude]="lon">
   		<agm-marker [latitude]="lat" [longitude]="lon"></agm-marker>
 	</agm-map>

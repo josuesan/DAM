@@ -6,9 +6,14 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>notes</ion-title>
-  </ion-navbar>
+  <ion-toolbar color="primary">
+		<ion-title>Notas sobre las peliculas</ion-title>
+		<ion-buttons end>
+			<button ion-button icon-only (click)="logout()"> 
+				<ion-icon name="log-out"></ion-icon>
+			</button>
+		</ion-buttons>	
+	</ion-toolbar>
 
 </ion-header>
 

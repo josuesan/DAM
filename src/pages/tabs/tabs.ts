@@ -51,11 +51,7 @@ export class TabsPage {
       
     });
   }
-  public logout() {
-    console.log("log out");
-    this.afAuth.auth.signOut();
-    this.navCtrl.setRoot("LoginPage");
-  }
+ 
    tab1Root = "FilmsPage";
    tab2Root = "NotesPage";
    tab3Root = "LocalizacionPage";

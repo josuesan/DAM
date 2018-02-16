@@ -7,10 +7,10 @@ import {
   GoogleMapOptions,
   CameraPosition,
   MarkerOptions,
-  Marker
+  //Marker
 } from '@ionic-native/google-maps';
 import { Geolocation } from '@ionic-native/geolocation';
-import { AgmCoreModule } from '@agm/core';
+//import { AgmCoreModule } from '@agm/core';
 
 /**
  * Generated class for the LocalizacionPage page.
@@ -25,39 +25,31 @@ import { AgmCoreModule } from '@agm/core';
   templateUrl: 'localizacion.html',
 })
 export class LocalizacionPage {
-  map: GoogleMap;
-  flag = false;
-  lat;
-  lon;
- /* test={
-  	lat: "",
-  	lon: ""
-  }*/
+  public map: GoogleMap;
+  public flag = false;
+  public lat;
+  public lon;
+ 
   constructor(private platform:Platform,private geolocations:Geolocation, private googleMaps: GoogleMaps,public navCtrl: NavController, public navParams: NavParams) {
   }
-
+	public logout() {
+    localStorage.clear();
+    this.navCtrl.popToRoot().then(()=>{
+      this.navCtrl.setRoot("LoginPage");
+    });
+  }
   ionViewDidLoad() {
     console.log('ionViewDidLoad LocalizacionPage');
-   // this.loadMap();
   }
   ngAfterViewInit(){
-  	
   	this.platform.ready().then(() => {
-  		//console.log("llamando");
-	 //this.loadMap();
-	  this.getPositionNative();
-	  /*Sanity check*/
-	  /*this.initMap();*/
-       
-    
-    
+	  this.getPositionNative(); 
 	});
-  	//this.loadMap();
+  
   	
   }
   ionViewWillEnter(){
   	
-
   }
     initMap() {
     	let google;
@@ -87,19 +79,7 @@ export class LocalizacionPage {
 	    }
 	  };
 	  let element: HTMLElement = document.getElementById("map_canvas");
-	  /*this.map = this.googleMaps.create('map_canvas', mapOptions);*/
 	  this.map = GoogleMaps.create(element, mapOptions);
-	  
-	  // Wait the MAP_READY for uses get position
-	  /*this.map.one(GoogleMapsEvent.MAP_READY)
-	  .then(() => {
-	    // Use the methos, the map is ready
-	    this.getPosition();
-	  })
-	  .catch(error =>{
-	    console.log(error);
-	  });*/
-
 	}
 
 	 getPosition(): void{
@@ -124,22 +104,7 @@ export class LocalizacionPage {
 	    })
 	    .catch(error =>{
 	      console.log(error);
-	    });
-	     /**
-	    * Obetner posicion mediante un pase de cordenadas nativas
-	    *
-	    */
-	   /* this.map.moveCamera({
-	    	target: {lat: latitude, lng: longitude}	
-
-	    });
-	    this.map.addMarker({
-		    title: 'Mi ubicacion',
-		    icon: 'blue',
-		    animation: 'DROP',
-		    position: {lat: latitude, lng: longitude}	  
-		});*/
-	    
+	    });   
 	}
 
 	getPositionNative(){
@@ -149,15 +114,7 @@ export class LocalizacionPage {
         this.lat = pos.coords.latitude;
         this.lon = pos.coords.longitude;
         this.flag =true;
-       /* this.getPosition(pos.coords.latitude, pos.coords.longitude);*/
      });
-
-      /*const watch = this.geolocations.watchPosition().subscribe(pos => {
-        console.log('lat: ' + pos.coords.latitude + ', lon: ' + pos.coords.longitude);
-      });
-
-      // to stop watching
-      watch.unsubscribe();*/
 	}
 	
 }

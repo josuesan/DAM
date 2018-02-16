@@ -15,7 +15,7 @@ import { GoogleMaps } from '@ionic-native/google-maps';
 import { Geolocation } from '@ionic-native/geolocation';
 import { HttpClientModule } from '@angular/common/http';
 import { AgmCoreModule } from '@agm/core';
-
+import { GoogleAnalytics } from '@ionic-native/google-analytics';
 /*
 * Import services
 */
@@ -49,6 +49,7 @@ import { NotesServices } from '../services/notes.services';
     Geolocation,
     FilmServices,
     NotesServices,
+    GoogleAnalytics,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

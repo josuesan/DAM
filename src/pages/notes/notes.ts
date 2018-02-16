@@ -23,21 +23,16 @@ export class NotesPage {
   notes:Array<Note>;
 	@ViewChild("myNav") nav:NavController;
 
-  constructor(public navCtrl: NavController, public notesServices: NotesServices, private navParams: NavParams) {
-   /* let result = await notesServices.getNotes().snapshotChanges().subscribe(
-    	notas => {
-        console.log(notas);
-        for (var i in notas) {
-          console.log(notas[i].payload.val());
-          this.note = notas[i].payload.val();
-          this.notes.push(this.note);
-        } 
-    });
-    console.log(this.notes);*/
-   // this.getNotes();
-    
+  constructor(public navCtrl: NavController, public notesServices: NotesServices, private navParams: NavParams) { 
   }
 
+  public logout() {
+    localStorage.clear();
+    this.navCtrl.popToRoot().then(()=>{
+      this.navCtrl.setRoot("LoginPage");
+    });
+  }
+  
   ionViewDidLoad() {
     console.log('ionViewDidLoad NotesPage');
     let result = this.notesServices.getNotes().valueChanges();

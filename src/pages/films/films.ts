@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FilmServices } from '../../services/film.services';
 import { Film } from '../../interfaces/film';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireDatabase , AngularFireObject } from 'angularfire2/database';
 /**
  * Generated class for the FilmsPage page.
  *
@@ -16,7 +18,7 @@ import { Film } from '../../interfaces/film';
 })
 export class FilmsPage {
   peliculas:Array<Film>;
-  constructor(private films:FilmServices, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private afDB:AngularFireDatabase, private afAuth:AngularFireAuth,private films:FilmServices, public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
@@ -36,4 +38,11 @@ export class FilmsPage {
       console.log(i);
     }
   }*/
+  public logout() {
+    localStorage.clear();
+    this.navCtrl.popToRoot().then(()=>{
+      this.navCtrl.setRoot("LoginPage");
+      this.afAuth.auth.signOut();
+    });
+  }
 }

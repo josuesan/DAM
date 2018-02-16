@@ -5,11 +5,14 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>films</ion-title>
-  </ion-navbar>
-
+	<ion-toolbar color="primary">
+		<ion-title>Listado de Peliculas</ion-title>
+		<ion-buttons end>
+			<button ion-button icon-only (click)="logout()"> 
+				<ion-icon name="log-out"></ion-icon>
+			</button>
+		</ion-buttons>	
+	</ion-toolbar>
 </ion-header>
 
 
@@ -20,8 +23,7 @@
 	      <img src="{{pelicula.Poster}}">
 	    </ion-thumbnail>
 	    <h2 >{{pelicula.Title }}</h2>
-	    <p> Año de salida: {{pelicula.Year}}</p>
-			<!--<(click)="goToDetail(pelicula.imdbID)"-->				
+	    <p> Año de salida: {{pelicula.Year}}</p>		
 	  </ion-item>
 
 	</ion-list>

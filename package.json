@@ -25,6 +25,7 @@
     "@ionic-native/core": "4.4.0",
     "@ionic-native/flashlight": "^4.4.2",
     "@ionic-native/geolocation": "^4.4.2",
+    "@ionic-native/google-analytics": "^4.5.3",
     "@ionic-native/google-maps": "^4.4.2",
     "@ionic-native/splash-screen": "4.4.0",
     "@ionic-native/status-bar": "4.4.0",
@@ -37,6 +38,7 @@
     "cordova-plugin-device": "^1.1.4",
     "cordova-plugin-flashlight": "^3.2.0",
     "cordova-plugin-geolocation": "^3.0.0",
+    "cordova-plugin-google-analytics": "^1.8.3",
     "cordova-plugin-googlemaps": "^2.1.1",
     "cordova-plugin-ionic": "^2.0.3",
     "cordova-plugin-ionic-webview": "^1.1.16",
@@ -76,7 +78,8 @@
       },
       "cordova-plugin-geolocation": {
         "GEOLOCATION_USAGE_DESCRIPTION": "To locate you"
-      }
+      },
+      "cordova-plugin-google-analytics": {}
     },
     "platforms": [
       "android"
