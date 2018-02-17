@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { LocalizacionPage } from './localizacion';
 import { AgmCoreModule } from '@agm/core';
+import { ServicesModule } from '../../services';
 
 @NgModule({
   declarations: [
@@ -9,6 +10,7 @@ import { AgmCoreModule } from '@agm/core';
   ],
   imports: [
     IonicPageModule.forChild(LocalizacionPage),
+    ServicesModule,
 
 	AgmCoreModule.forRoot({
       apiKey: 'AIzaSyD72g6xj5LqEnujNnCxm8LKNzaez75x9-A'
