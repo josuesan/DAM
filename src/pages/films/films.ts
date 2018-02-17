@@ -24,7 +24,8 @@ export class FilmsPage {
     private afAuth:AngularFireAuth,
     private films:FilmServices, 
     public navCtrl: NavController, 
-    public navParams: NavParams) {
+    public navParams: NavParams,
+  public logoutService:LogoutServices) {
   }
 
   ionViewDidLoad() {

@@ -5,26 +5,10 @@ import { NotesServices } from './notes.services';
 import { LogoutServices } from './logout.services';
 
 @NgModule({
-  declarations: [
-    FilmServices,
-    NotesServices,
-    LogoutServices
-  ],
-  imports: [
-    FilmServices,
-    NotesServices,
-    LogoutServices
-  ],
-  exports:[
-    FilmServices,
-    NotesServices,
-    LogoutServices
-  ],
   providers:[
     FilmServices,
     NotesServices,
     LogoutServices
-
   ],
 })
 export class ServicesModule {}
