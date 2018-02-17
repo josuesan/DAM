@@ -1,7 +1,15 @@
+/**
+ * Global imports
+ */
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController  } from 'ionic-angular';
+
+/**
+ * Local imports
+ */
 import { User } from '../../interfaces/user';
-import { AngularFireAuth } from 'angularfire2/auth';
+import { AuthService } from '../../services';
+
 /**
  * Generated class for the RegisterPage page.
  *
@@ -11,43 +19,34 @@ import { AngularFireAuth } from 'angularfire2/auth';
 
 @IonicPage()
 @Component({
-  selector: 'page-register',
-  templateUrl: 'register.html',
+	selector: 'page-register',
+	templateUrl: 'register.html',
 })
 export class RegisterPage {
-	user:User ={
+	public user:User ={
 		email: "",
 		password: ""
 	};
-  constructor(public afAuth: AngularFireAuth ,public navCtrl: NavController, public navParams: NavParams,private alertCtrl: AlertController) {
-  }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad RegisterPage');
-  }
-  presentAlert() {
-    let alert = this.alertCtrl.create({
-      title: 'Error al resgitrarse',
-      subTitle: 'Por favor intentelo de nuevo.',
-      buttons: ['OK']
-    });
-    alert.present();
-  }
+	constructor(
+		public navCtrl: NavController, 
+		public navParams: NavParams,
+		private alertCtrl: AlertController,
+		private authService:AuthService) {}
 
-  async register(user:User){
-  	try {
-   		const result = await this.afAuth.auth.createUserWithEmailAndPassword(user.email, user.password);
-   		console.log(result);
-   		this.navCtrl.pop();
-  	}
-  	catch(e){
-      this.presentAlert();
-  		console.log(e);
+	ionViewDidLoad() { console.log('ionViewDidLoad RegisterPage'); }
+	presentAlert() {
+		let alert = this.alertCtrl.create({
+			title: 'Error al resgitrarse',
+			subTitle: 'Por favor intentelo de nuevo.',
+			buttons: ['OK']
+		});
+		alert.present();
+	}
 
-
-  	}
-   }
-  
-
-
+	async register(user:User){
+		let response = await this.authService.register(user);
+		if (response) this.navCtrl.pop();
+		else this.presentAlert();
+	}
 }

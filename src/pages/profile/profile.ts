@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Profile } from '../../interfaces/profile';
 import { AngularFireDatabase } from 'angularfire2/database';
+
 /**
  * Generated class for the ProfilePage page.
  *
@@ -30,7 +31,7 @@ export class ProfilePage {
 
   createProfile(){
   	this.afAuth.authState.take(1).subscribe(auth => {
-  		this.afDB.object(`profile/${auth.uid}`).set(this.profile).then( () => this.navCtrl.setRoot("HomePage"));
+  		this.afDB.object(`profile/${auth.uid}`).set(this.profile).then( () => this.navCtrl.setRoot("login-page"));
   	});
   }
 }

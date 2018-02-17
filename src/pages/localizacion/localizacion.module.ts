@@ -1,20 +1,25 @@
+/**
+ * Global imports
+ */
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { LocalizacionPage } from './localizacion';
 import { AgmCoreModule } from '@agm/core';
-import { ServicesModule } from '../../services';
+
+/**
+ * Local imports
+ */
+import { LocalizacionPage } from './localizacion';
+import { ServiceModule } from '../../services';
+
 
 @NgModule({
-  declarations: [
-    LocalizacionPage,
-  ],
-  imports: [
-    IonicPageModule.forChild(LocalizacionPage),
-    ServicesModule,
-
-	AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyD72g6xj5LqEnujNnCxm8LKNzaez75x9-A'
-    }),
-  ],
+	declarations: [LocalizacionPage],
+	imports: [
+		IonicPageModule.forChild(LocalizacionPage),
+		ServiceModule,
+		AgmCoreModule.forRoot({
+			apiKey: 'AIzaSyD72g6xj5LqEnujNnCxm8LKNzaez75x9-A'
+		}),
+	]
 })
 export class LocalizacionPageModule {}

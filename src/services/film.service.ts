@@ -5,7 +5,7 @@ import { Film } from '../interfaces/film';
 
 
 @Injectable()
-export class FilmServices  {
+export class FilmService  {
 	url = "http://www.omdbapi.com/?apikey=5753a622&";
 	peliculas=["Batman","Fast and furious", "Star Wars", "Marvel", "Pirates of the Caribbean"];
 	films:Array<Film> = [];

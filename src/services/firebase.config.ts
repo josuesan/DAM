@@ -5,7 +5,4 @@ export const FIREBASE_CONFIG = {
     projectId: "juggersapp",
     storageBucket: "juggersapp.appspot.com",
     messagingSenderId: "678453249914"
-  };
-
-  //instalar 
-  //npm install firebase angularfire2 --save
+};

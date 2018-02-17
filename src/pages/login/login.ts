@@ -5,6 +5,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Profile } from '../../interfaces/profile';
 import { GoogleAnalytics } from '@ionic-native/google-analytics';
+import { AuthService } from '../../services'
 
 /**
  * Generated class for the LoginPage page.
@@ -15,64 +16,45 @@ import { GoogleAnalytics } from '@ionic-native/google-analytics';
 declare const $:any;
 
 @IonicPage({
-  name: 'login-page',
-  segment: 'login'
+	name: 'login-page',
+	segment: 'login'
 })
 @Component({
-  selector: 'page-login',
-  templateUrl: 'login.html',
+	selector: 'page-login',
+	templateUrl: 'login.html',
 })
 export class LoginPage {
-  data = {} as Profile;
-	user:User = {
-		email: "",
-		password: ""
-	};
-  constructor(private ga: GoogleAnalytics,private tosty:ToastController,private afDB:AngularFireDatabase, private afAuth:AngularFireAuth, public navCtrl: NavController, public navParams: NavParams) {
-  }
+	public data = {} as Profile;
+	public user:User = { email: "", password: "" };
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
-    this.ga.startTrackerWithId('UA-114284393-1')
-    .then(() => {
-      console.log('Google analytics is ready now');
-          this.ga.trackView('test');
-      // Tracker is ready
-      // You can now track pages or set additional information such as AppVersion or UserId
-    })
-    .catch(e => console.log('Error starting GoogleAnalytics', e));
-  }
+	constructor(
+		private ga: GoogleAnalytics,
+		private tosty:ToastController,
+		public navCtrl: NavController, 
+		public navParams: NavParams,
+		private authService:AuthService) {}
 
-  register(){
-  	this.navCtrl.push('RegisterPage');
-  }
+	async ionViewDidLoad() {
+		console.log('ionViewDidLoad LoginPage');
+		try {
+			await this.ga.startTrackerWithId('UA-114284393-1');
+			console.log('Google analytics is ready now');
+			await this.ga.trackView('test');
+		} catch (error) {
+			console.log('Error starting GoogleAnalytics', error);
+		}
+	}
 
-  async login(user:User){
-  	try{
-  		const result = await this.afAuth.auth.signInWithEmailAndPassword(user.email,user.password);
-  		if(result){
-        this.afAuth.authState.take(1).subscribe(auth => {
-          this.afDB.object(`profile/${auth.uid}`).snapshotChanges().subscribe(data =>{
-            if(data.key != null){
-              this.navCtrl.setRoot("TabsPage");
-            }
-            else{
-              this.navCtrl.setRoot("ProfilePage");
-            }
-          }) 
-        });
-  		}
-  	}
-  	catch(e){
-  		console.log(e);
-      user.password="";
-      this.tosty.create({
-          message: `Se encontro un error en el usuario o en la contraseña`,
-          duration: 4000
-        }).present();
-  	}
-  	
+	async register(){ await this.navCtrl.push('RegisterPage'); }
 
-  }
-  
+	async login(user:User){
+		let response = await this.authService.signIn(user, this.navCtrl);
+		if (!response){
+			user.password="";
+			this.tosty.create({
+				message: `Se encontro un error en el usuario o en la contraseña`,
+				duration: 4000
+			}).present();
+		}
+	}
 }
