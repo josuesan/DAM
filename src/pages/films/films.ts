@@ -32,8 +32,8 @@ export class FilmsPage {
    this.peliculas = this.films.getFilms();
    console.log(this.peliculas);
   }
-  public goToDetail(id){
-  	this.navCtrl.push("FilmDetailPage", {id:id});
+  public async goToDetail(id){
+  	await this.navCtrl.push("FilmDetailPage", {id:id});
   }
   /*async getFilm(id){
     
