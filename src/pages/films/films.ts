@@ -7,7 +7,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 /**
  * Local imports
  */
-import { FilmService } from '../../services';
+import { FilmService, AuthService } from '../../services';
 import { Film } from '../../interfaces/film';
 
 /**
@@ -24,8 +24,10 @@ export class FilmsPage {
 	public peliculas:Array<Film>;
 
 	constructor(
-		private films:FilmService, public navCtrl: NavController, 
-		public navParams: NavParams) {
+		private films:FilmService, 
+		public navCtrl: NavController, 
+		public navParams: NavParams,
+		private authService:AuthService) {
 	}
 
 	ionViewDidLoad() {
@@ -37,6 +39,6 @@ export class FilmsPage {
 	public async goToDetail(id){ await this.navCtrl.push("FilmDetailPage", {id:id}); }
 
 	public async logout() {
-	
+		await this.authService.signOut(this.navCtrl);
 	}
 }

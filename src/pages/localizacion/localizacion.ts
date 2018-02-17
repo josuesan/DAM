@@ -12,7 +12,7 @@ import {
 	MarkerOptions,
 } from '@ionic-native/google-maps';
 import { Geolocation } from '@ionic-native/geolocation';
-//import { AgmCoreModule } from '@agm/core';
+import { AuthService } from '../../services';
 
 /**
  * Generated class for the LocalizacionPage page.
@@ -36,14 +36,10 @@ export class LocalizacionPage {
 		private geolocations:Geolocation, 
 		private googleMaps: GoogleMaps,
 		public navCtrl: NavController, 
-		public navParams: NavParams) {}
+		public navParams: NavParams,
+		private authService:AuthService) {}
 
-	public logout() {
-		localStorage.clear();
-		this.navCtrl.popToRoot().then(()=>{
-			this.navCtrl.setRoot("LoginPage");
-		});
-	}
+	public async logout() { await this.authService.signOut(this.navCtrl); }
 
 	/**
 	 * Event management 

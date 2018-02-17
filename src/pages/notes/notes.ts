@@ -7,9 +7,10 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 /**
  * Local imports
  */
-import { NotesService } from '../../services';
+import { NotesService, AuthService } from '../../services';
 import { Note } from '../../interfaces/note';
 import { Observable } from 'rxjs/Observable';
+
 /**
  * Generated class for the NotesPage page.
  *
@@ -32,9 +33,10 @@ export class NotesPage {
 	constructor(
 		public navCtrl: NavController, 
 		public notesServices: NotesService, 
-		private navParams: NavParams) { }
+		private navParams: NavParams,
+		private authService:AuthService) { }
 
-	public logout() {}
+	public async logout() { await this.authService.signOut(this.navCtrl); }
   
 	ionViewDidLoad() {
 		console.log('ionViewDidLoad NotesPage');
