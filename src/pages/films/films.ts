@@ -18,7 +18,12 @@ import { AngularFireDatabase , AngularFireObject } from 'angularfire2/database';
 })
 export class FilmsPage {
   peliculas:Array<Film>;
-  constructor(private afDB:AngularFireDatabase, private afAuth:AngularFireAuth,private films:FilmServices, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    private afDB:AngularFireDatabase, 
+    private afAuth:AngularFireAuth,
+    private films:FilmServices, 
+    public navCtrl: NavController, 
+    public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
@@ -38,11 +43,10 @@ export class FilmsPage {
       console.log(i);
     }
   }*/
-  public logout() {
+  public async logout() {
     localStorage.clear();
-    this.navCtrl.popToRoot().then(()=>{
-      this.navCtrl.setRoot("LoginPage");
-      this.afAuth.auth.signOut();
-    });
+    await this.navCtrl.popToRoot();
+    await this.navCtrl.setRoot("LoginPage");
+    //this.afAuth.auth.signOut();
   }
 }

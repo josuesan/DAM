@@ -14,7 +14,10 @@ import { GoogleAnalytics } from '@ionic-native/google-analytics';
  */
 declare const $:any;
 
-@IonicPage()
+@IonicPage({
+  name: 'app-login',
+  segment: 'login'
+})
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
