@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,EventEmitter, Output  } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FilmServices } from '../../services/film.services';
 import { Film } from '../../interfaces/film';
@@ -28,7 +28,6 @@ export class FilmsPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad FilmsPage');
-   /* this.getFilm("Batman");*/
    this.peliculas = this.films.getFilms();
    console.log(this.peliculas);
   }

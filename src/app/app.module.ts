@@ -22,7 +22,7 @@ import { GoogleAnalytics } from '@ionic-native/google-analytics';
 import { FIREBASE_CONFIG } from './app.firebase.config';
 import { FilmServices } from '../services/film.services';
 import { NotesServices } from '../services/notes.services';
-
+import { LogoutServices } from '../services/logout.services';
 @NgModule({
   declarations: [
     MyApp,
@@ -50,6 +50,7 @@ import { NotesServices } from '../services/notes.services';
     FilmServices,
     NotesServices,
     GoogleAnalytics,
+    LogoutServices,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
