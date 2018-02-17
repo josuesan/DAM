@@ -46,7 +46,7 @@ export class FilmsPage {
   public async logout() {
     localStorage.clear();
     await this.navCtrl.popToRoot();
-    await this.navCtrl.setRoot("LoginPage");
+    await this.navCtrl.setRoot("login-page");
     //this.afAuth.auth.signOut();
   }
 }
