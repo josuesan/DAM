@@ -19,7 +19,12 @@ import { LogoutServices } from '../../services/logout.services';
 })
 export class FilmsPage {
   peliculas:Array<Film>;
-  constructor(private LogService:LogoutServices, private afDB:AngularFireDatabase, private afAuth:AngularFireAuth,private films:FilmServices, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    private afDB:AngularFireDatabase, 
+    private afAuth:AngularFireAuth,
+    private films:FilmServices, 
+    public navCtrl: NavController, 
+    public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
@@ -30,12 +35,18 @@ export class FilmsPage {
   public goToDetail(id){
   	this.navCtrl.push("FilmDetailPage", {id:id});
   }
-
-  public logout() {
-    //this.navCtrl.popToRoot().then(()=>{
-    //  this.navCtrl.setRoot("LoginPage");
-      //this.afAuth.auth.signOut();
-   // });
-   
+  /*async getFilm(id){
+    
+    let result = await this.films.getFilm(id);
+    console.log( result );
+    for (var i in result) {
+      console.log(i);
+    }
+  }*/
+  public async logout() {
+    localStorage.clear();
+    await this.navCtrl.popToRoot();
+    await this.navCtrl.setRoot("LoginPage");
+    //this.afAuth.auth.signOut();
   }
 }
