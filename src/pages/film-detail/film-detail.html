@@ -7,7 +7,15 @@
 <ion-header>
 	<ion-navbar color="primary">
 		<ion-toolbar color="primary">
-			<ion-title>Detalle de Pelicula</ion-title>
+				<ion-title>
+						<svg id="barsLogo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 63.15 224.35">
+							<rect class="cls-1" x="27.22" width="20.06" height="163.78"/>
+							<rect class="cls-2" y="4" width="20.06" height="163.78"/>
+							<rect class="cls-3" x="13.9" y="13.1" width="20.06" height="163.78"/>
+							<rect class="cls-4" x="43.1" y="7.45" width="20.06" height="163.78"/>
+						</svg>	
+						<span class="nombreLogo">Detalle de peliculas</span>	
+					</ion-title>
 		</ion-toolbar>
 	</ion-navbar>
 
@@ -17,15 +25,15 @@
 <ion-content padding>
 	<ion-card>
 	  <ion-item>
-	    <h2>{{film.Title}}</h2>
+	    <h2 id="FilmTitle"> <strong>{{film.Title}}</strong>	 </h2>
 	  </ion-item>
 
 	  <img src="{{film.Poster}}">
 
 	  <ion-card-content>
-	    <p>Director: <span>{{film.Director}}</span> </p> 
-	    <p>Reparto principal: <span>{{film.Actors}}</span></p> 
-	    <h4>Sipnosis</h4>
+	    <p><strong>Director:</strong> <span>{{film.Director}}</span> </p> 
+	    <p><strong>Reparto principal:</strong> <span>{{film.Actors}}</span></p> 
+	    <h4><strong>Sipnosis</strong></h4>
 	    <p>{{film.Plot}}</p>
 	  </ion-card-content>
 
@@ -49,7 +57,13 @@
 			       {{film.Runtime}}
 			    </ion-note>
 			</button>
-	    </ion-col>
+			</ion-col>
+			<ion-col>
+					<button id="TweetBtn" ion-button icon-left clear small>
+						<ion-icon name="logo-twitter"></ion-icon>
+						<ion-note>Compartir en twitter</ion-note>
+					</button>
+				</ion-col>
 	  </ion-row>
 
 	</ion-card>

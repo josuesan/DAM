@@ -1,12 +1,11 @@
 /**
  * Global imports
  */
+import { App } from "ionic-angular";
 import { Injectable } from "@angular/core";
-import { HttpClient } from '@angular/common/http';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { AngularFireDatabase , AngularFireObject } from 'angularfire2/database';
-import $ from 'jquery';
+import { AngularFireDatabase } from 'angularfire2/database';
 
 
 /**
@@ -18,7 +17,8 @@ import { User } from '../interfaces/user';
 export class AuthService {
     constructor(
         private afDB:AngularFireDatabase, 
-        private afAuth:AngularFireAuth,){}
+        private afAuth:AngularFireAuth,
+        private app: App){}
 
     public async signIn(user:User, navCtrl:NavController){
         try{
@@ -42,9 +42,8 @@ export class AuthService {
         localStorage.clear();
         await navCtrl.popToRoot();
         await navCtrl.setRoot("login-page");
-        //-- USE JQUERY HERE
-        let stuff = $('div.class');
-        //this.afAuth.auth.signOut();
+        this.app.getRootNav().setRoot("login-page");
+        this.afAuth.auth.signOut();
     }
 
 

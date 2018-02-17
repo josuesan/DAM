@@ -6,14 +6,13 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import { Profile } from '../../interfaces/profile';
 import { GoogleAnalytics } from '@ionic-native/google-analytics';
 import { AuthService } from '../../services'
-
 /**
  * Generated class for the LoginPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-declare const $:any;
+//declare const $:any;
 
 @IonicPage({
 	name: 'login-page',
