@@ -30,8 +30,13 @@ export class DetailNotePage implements OnInit {
 	ngOnInit(){
 		this.id = this.navParams.get('id');
 		if(this.id !=0){
-			this.notesService.getNote(this.id).snapshotChanges().subscribe( note=> {
+			this.notesService.getNote(this.id).snapshotChanges().subscribe( async (note) => {
 				this.note = note.payload.val();
+				if (this.note === null || this.note === undefined){
+					this.note = {id: "" , title: "", description: ""};
+					console.log("Views are :: ", this.navCtrl.getViews());
+					await this.navCtrl.pop();
+				}
 				console.log("The note is :: ", this.note);
 			});
 		}
