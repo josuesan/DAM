@@ -27,8 +27,7 @@ export class FilmsPage {
 		private films:FilmService, 
 		public navCtrl: NavController, 
 		public navParams: NavParams,
-		private authService:AuthService) {
-	}
+		public authService:AuthService) {}
 
 	ionViewDidLoad() {
 		console.log('ionViewDidLoad FilmsPage');
@@ -39,6 +38,7 @@ export class FilmsPage {
 	public async goToDetail(id){ await this.navCtrl.push("FilmDetailPage", {id:id}); }
 
 	public async logout() {
+		console.log("Auth is :: ", this.authService);
 		await this.authService.signOut(this.navCtrl);
 	}
 }

@@ -6,6 +6,8 @@ import { HttpClient } from '@angular/common/http';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase , AngularFireObject } from 'angularfire2/database';
+import $ from 'jquery';
+
 
 /**
  * Local imports
@@ -40,7 +42,9 @@ export class AuthService {
         localStorage.clear();
         await navCtrl.popToRoot();
         await navCtrl.setRoot("login-page");
-        this.afAuth.auth.signOut();
+        //-- USE JQUERY HERE
+        let stuff = $('div.class');
+        //this.afAuth.auth.signOut();
     }
 
 
