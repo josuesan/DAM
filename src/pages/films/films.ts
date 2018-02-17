@@ -23,26 +23,18 @@ export class FilmsPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad FilmsPage');
-   /* this.getFilm("Batman");*/
    this.peliculas = this.films.getFilms();
    console.log(this.peliculas);
   }
   public goToDetail(id){
   	this.navCtrl.push("FilmDetailPage", {id:id});
   }
-  /*async getFilm(id){
-    
-    let result = await this.films.getFilm(id);
-    console.log( result );
-    for (var i in result) {
-      console.log(i);
-    }
-  }*/
+
   public logout() {
     localStorage.clear();
     this.navCtrl.popToRoot().then(()=>{
       this.navCtrl.setRoot("LoginPage");
-      this.afAuth.auth.signOut();
+      //this.afAuth.auth.signOut();
     });
   }
 }
