@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase , AngularFireObject } from 'angularfire2/database';
@@ -50,6 +50,7 @@ export class TabsPage {
       }
       
     });
+
   }
  
    tab1Root = "FilmsPage";

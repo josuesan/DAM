@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,EventEmitter, Output  } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FilmServices } from '../../services/film.services';
 import { Film } from '../../interfaces/film';
@@ -32,9 +32,10 @@ export class FilmsPage {
 
   public logout() {
     localStorage.clear();
-    this.navCtrl.popToRoot().then(()=>{
-      this.navCtrl.setRoot("LoginPage");
+    //this.navCtrl.popToRoot().then(()=>{
+    //  this.navCtrl.setRoot("LoginPage");
       //this.afAuth.auth.signOut();
-    });
+   // });
+   
   }
 }
