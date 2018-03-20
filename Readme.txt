@@ -11,3 +11,5 @@ El proyecto cuenta con las siguientes funcionalidades:
 -Informacion de cantidad de Usuarios acceden a la aplicacion con Google Analitycs.
 -Responsive Design.
 -Compartir peliculas por Twitter.
+
+Para ejecutar este proyecto debe tener Instalador Ionic y Node. hacer npm install para instalar todas las dependencias y usar Ionic Serve
